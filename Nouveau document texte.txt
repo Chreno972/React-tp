@@ -1,0 +1,29 @@
+    Rappels JavaScript
+    Programmation fonctionnelle
+    Ecosystème JS, NPM
+    Webpack, Babel
+    Syntaxe ES2015
+    Modules ES2015
+    React, ReactDOM et JSX
+    React Stateless Component
+
+    React Stateful Component
+    React DevTools
+    Gestion des événements
+    Lifecycles
+    Forms, controlled components
+    Architecture complexe
+    Modules utiles
+
+    Pure functions
+    Reducers
+    Action creators
+    Redux DevTools
+    React-Redux
+    Containers Component
+    React-Router
+
+    React Hooks
+    useState, useEffect
+    Tests, TDD / BDD
+    Mocha, Chai, Enzyme
