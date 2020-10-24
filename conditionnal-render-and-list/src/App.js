@@ -38,10 +38,16 @@ class App extends Component {
     this.setState({ famille })
   }
 
-  handleChange = event => {
+  handleChange = (event, id) => {
     const famille = { ...this.state.famille }
     const nom = event.target.value
-    famille.membre1.nom = nom
+    famille[id].nom = nom
+    this.setState({ famille })
+  }
+
+  hideName = id => {
+    const famille = { ...this.state.famille }
+    famille[id].nom = 'X'
     this.setState({ famille })
   }
 
@@ -53,24 +59,19 @@ class App extends Component {
 
   render() {
     const { titre } = this.props
-    const { famille, isShown } = this.state
+    const { famille } = this.state
+
+
+    const liste = Object.keys(famille).map(membre => (
+      <Membre key={membre} handleChange={event => this.handleChange(event, membre)} hideName={() => this.hideName(membre)} age={famille[membre].age} nom={famille[membre].nom} />
+    ))
+    console.log(liste);
+
     return (
       <div className="App">
         <h1>{titre}</h1>
-        <input value={famille.membre1.nom} onChange={this.handleChange} type="text" />
-        <Membre age={famille.membre1.age} nom={famille.membre1.nom} />
-        <Membre age={famille.membre2.age} nom={famille.membre2.nom} />
-        <Membre age={famille.membre3.age} nom={famille.membre3.nom} />
-        <Membre age={famille.membre4.age} nom={famille.membre4.nom}>
-          {
-            isShown ? <strong>Je suis un chien</strong> : null
-          }
-          <button onClick={this.handleShowDescription}>
-            {
-              isShown ? 'Cacher' : 'Montrer'
-            }
-          </button>
-        </Membre>
+        { liste}
+
         <Button vieillir={() => this.handleClick(10)} />
       </div>
     )
