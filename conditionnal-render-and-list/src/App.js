@@ -2,6 +2,7 @@ import './App.css';
 
 import React, { Component } from 'react';
 
+// ! import your components here
 import Button from './components/button';
 import Membre from './components/Membre';
 
@@ -23,12 +24,14 @@ const famille = {
     age: 9
   }
 }
-class App extends Component {
+class App extends Component {// ! use all the Component functionnalites for the App class
   state = {
-    famille,
-    isShown: false
+    famille, // ! get the 'famille' constant
+    isShown: false // ! by default, don't display something
   }
 
+  // ! when you click the button 'vieillir', use the num argument to increment 
+  // ! the actual age of each member by one
   handleClick = num => {
     const famille = { ...this.state.famille }
     famille.membre1.age += num
@@ -36,13 +39,15 @@ class App extends Component {
     famille.membre3.age += num
     famille.membre4.age += num
     this.setState({ famille })
+    // ! then we set the actual state of the 'famille' object
   }
 
   handleChange = (event, id) => {
-    const famille = { ...this.state.famille }
-    const nom = event.target.value
-    famille[id].nom = nom
+    const famille = { ...this.state.famille } // ! spread all the object content into another 'famille' variable
+    const nom = event.target.value // ! set the nom variable with the value of the target
+    famille[id].nom = nom // ! set the id of the target with its own value
     this.setState({ famille })
+    // ! then we set the actual state of the 'famille' object
   }
 
   hideName = id => {
@@ -60,17 +65,21 @@ class App extends Component {
   render() {
     const { titre } = this.props
     const { famille } = this.state
-
-
     const liste = Object.keys(famille).map(membre => (
-      <Membre key={membre} handleChange={event => this.handleChange(event, membre)} hideName={() => this.hideName(membre)} age={famille[membre].age} nom={famille[membre].nom} />
+      //  ! foreach membre into famille
+      <Membre
+        key={membre}// ! the id of a membre is the same as it's name
+        handleChange={event => this.handleChange(event, membre)}// ! increment the age by 'num' here it's 10
+        hideName={() => this.hideName(membre)}// ! trigger the function to hide the 'membre'
+        age={famille[membre].age}// ! display the age and the name of each member
+        nom={famille[membre].nom} />
     ))
     console.log(liste);
 
     return (
       <div className="App">
         <h1>{titre}</h1>
-        { liste}
+        { liste}// ! the liste object is the loop that displays each 'member' of the 'famille'
 
         <Button vieillir={() => this.handleClick(10)} />
       </div>
