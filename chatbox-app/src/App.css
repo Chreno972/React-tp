@@ -14,7 +14,7 @@ body, .box > *, textarea, input {
 	STRUCTURE
 ---------------------------- */
 html {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
